@@ -3,13 +3,14 @@ import math
 import constants as c
 
 class Celestial_Body:
-    def __init__(self, x, y, radius, color, mass, is_center):
+    def __init__(self, x, y, radius, color, mass, is_center, list, scale):
         self.x = x
         self.y = y
         self.radius = radius
         self.color = color
         self.mass = mass
         self.is_center = is_center
+        self.scale = scale
 
         self.orbit = []
         self.distance_to_sun = 0
@@ -17,19 +18,21 @@ class Celestial_Body:
         self.vel_x = 0
         self.vel_y = 0
 
+        list.append(self)
+
     def show(self, window):
         scaled_points = []
         if len(self.orbit) >= 2:
             for point in self.orbit:
                 x, y = point
-                x = x * c.scale + c.WIDTH/2
-                y = y * c.scale + c.HEIGHT/2
+                x = x * self.scale + c.WIDTH/2
+                y = y * self.scale + c.HEIGHT/2
                 scaled_points.append((x,y))
 
             pygame.draw.lines(window, (255,255,255), False, scaled_points, 1)
 
-        coord_x = self.x * c.scale + c.WIDTH/2
-        coord_y = self.y * c.scale + c.HEIGHT/2
+        coord_x = self.x * self.scale + c.WIDTH/2
+        coord_y = self.y * self.scale + c.HEIGHT/2
         pygame.draw.circle(window, self.color, (coord_x, coord_y), self.radius)
 
     def acceleration(self, body):
@@ -70,4 +73,3 @@ class Celestial_Body:
             distance = math.sqrt(distance_x**2+distance_y**2)
             vel += math.sqrt(c.G * body.mass / distance)
         return vel
-    
