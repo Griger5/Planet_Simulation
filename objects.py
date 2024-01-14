@@ -3,14 +3,16 @@ import math
 import constants as c
 
 class Celestial_Body:
-    def __init__(self, x, y, radius, color, mass, is_center, list, scale):
+    def __init__(self, x, y, radius, color, mass, is_center, is_sun, list, scale, name):
         self.x = x
         self.y = y
         self.radius = radius
         self.color = color
         self.mass = mass
         self.is_center = is_center
+        self.is_sun = is_sun
         self.scale = scale
+        self.name = name
 
         self.orbit = []
         self.distance_to_sun = 0
@@ -35,10 +37,14 @@ class Celestial_Body:
         coord_y = self.y * self.scale + c.HEIGHT/2
         pygame.draw.circle(window, self.color, (coord_x, coord_y), self.radius)
 
-    def acceleration(self, body):
+    def distance(self, body):
         distance_x = body.x - self.x
         distance_y = body.y - self.y
         distance = math.sqrt(distance_x**2+distance_y**2)
+        return distance_x, distance_y, distance
+    
+    def acceleration(self, body):
+        distance_x, distance_y, distance = self.distance(body)
         angle = math.atan2(distance_y, distance_x)
         acc_x = math.cos(angle)*c.G*body.mass/distance**2
         acc_y = math.sin(angle)*c.G*body.mass/distance**2
@@ -50,6 +56,8 @@ class Celestial_Body:
         for body in bodies:
             if self == body:
                 continue
+            if body.is_sun:
+                _, _, self.distance_to_sun = self.distance(body)
             acc_x, acc_y = self.acceleration(body)
             total_acc_x += acc_x
             total_acc_y += acc_y

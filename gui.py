@@ -50,3 +50,35 @@ class Button():
         ])
         
         self.window.blit(self.buttonSurface, self.buttonRect)
+
+
+class PlanetStats():
+    def __init__(self, window, x, y, radius, color, list, font, name, distance):
+        self.window = window
+        self.x = x
+        self.y = y
+        self.radius = radius
+        self.color = color
+        self.list = list
+        self.distance = distance
+
+        self.width, self.height = 190, 150
+
+        self.statSurface = pygame.Surface((self.width, self.height))
+        self.statSurface.fill((20,20,20))
+        self.statRect = pygame.Rect(self.x, self.y, self.width, self.height)
+
+        self.planetName = font.render(name, True, (180, 180, 180))
+
+        self.container = pygame.draw.rect(self.statSurface, (35,35,35), (0, 0, self.width, self.height), 0, 10)
+        self.planet = pygame.draw.circle(self.statSurface, self.color, (self.width/2, self.height/2), self.radius)
+        
+        list.append(self)
+
+    def process(self):
+        self.statSurface.blit(self.planetName, [
+            self.width/2 - self.planetName.get_rect().width/2,
+            self.height/6 - self.planetName.get_rect().height/2
+        ])
+        
+        self.window.blit(self.statSurface, self.statRect)
