@@ -62,8 +62,15 @@ class PlanetStats():
         self.list = list
         self.distance = distance
         self.distance_font = distance_font
+        self.alreadyPressed = False
 
         self.width, self.height = 190, 150
+
+        self.containerColors = {
+            "normal":(35,35,35),
+            "hover":(60,60,60),
+            "pressed":(90,90,90),
+        }
 
         self.statSurface = pygame.Surface((self.width, self.height))
         self.statSurface.fill((20,20,20))
@@ -74,11 +81,12 @@ class PlanetStats():
         self.distanceText = self.distance_font.render("", True, (180, 180, 180))
 
         list.append(self)
-
-    def process(self):
+    
+    def process(self, bodies):
         self.statSurface.fill((20,20,20))
-        self.container = pygame.draw.rect(self.statSurface, (35,35,35), (0, 0, self.width, self.height), 0, 10)
-        self.planet = pygame.draw.circle(self.statSurface, self.color, (self.width/2, self.height/2), self.radius)
+        pygame.draw.rect(self.statSurface, self.containerColors["normal"], (0, 0, self.width, self.height), 0, 10)
+
+        pygame.draw.circle(self.statSurface, self.color, (self.width/2, self.height/2), self.radius)
         if self.distance != 0:
             self.distanceText = self.distance_font.render(str(self.distance/1000)+" Km", True, (180, 180, 180))
         

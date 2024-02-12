@@ -3,7 +3,7 @@ import math
 import constants as c
 
 class Celestial_Body:
-    def __init__(self, x, y, radius, color, mass, is_center, is_sun, list, scale, name):
+    def __init__(self, x, y, radius, color, mass, is_center, is_sun, list, scale, name, offset_x, offset_y):
         self.x = x
         self.y = y
         self.radius = radius
@@ -13,6 +13,11 @@ class Celestial_Body:
         self.is_sun = is_sun
         self.scale = scale
         self.name = name
+        self.offset_x = offset_x
+        self.offset_y = offset_y
+
+        self.coord_x = 0
+        self.coord_y = 0
 
         self.orbit = []
         self.distance_to_sun = 0
@@ -27,15 +32,15 @@ class Celestial_Body:
         if len(self.orbit) >= 2:
             for point in self.orbit:
                 x, y = point
-                x = x * self.scale + c.WIDTH/2
-                y = y * self.scale + c.HEIGHT/2
+                x = x * self.scale + c.WIDTH/2 + self.offset_x
+                y = y * self.scale + c.HEIGHT/2 + self.offset_y
                 scaled_points.append((x,y))
 
             pygame.draw.lines(window, (255,255,255), False, scaled_points, 1)
 
-        coord_x = self.x * self.scale + c.WIDTH/2
-        coord_y = self.y * self.scale + c.HEIGHT/2
-        pygame.draw.circle(window, self.color, (coord_x, coord_y), self.radius)
+        self.coord_x = self.x * self.scale + c.WIDTH/2 + self.offset_x
+        self.coord_y = self.y * self.scale + c.HEIGHT/2 + self.offset_y
+        pygame.draw.circle(window, self.color, (self.coord_x, self.coord_y), self.radius)
 
     def distance(self, body):
         distance_x = body.x - self.x
