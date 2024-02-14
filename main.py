@@ -13,12 +13,14 @@ pygame.display.set_caption("Planet Simulation")
 pygame.key.set_repeat(8)
 
 class PlanetSimulation():
-    def __init__(self) -> None:
+    def __init__(self):
         run = True
         clock = pygame.time.Clock()
         font1 = pygame.font.SysFont('Arial', 35, True)
         font2 = pygame.font.SysFont('Times new roman', 30)
         font3 = pygame.font.SysFont('Arial', 18)
+        font4 = pygame.font.SysFont('Arial', 22)
+        font5 = pygame.font.SysFont('Arial', 22, True)
         self.scale = c.SCALE
         
         # required, to not make the zooming out rapidly "speed up"
@@ -52,9 +54,9 @@ class PlanetSimulation():
 
         stats = []
         for i,body in enumerate(self.bodies[:-4]):
-            gui.PlanetStats(WIN, 5, 8+i*158, body.radius, body.color, stats, body.name, body.x, font2, font3)
+            gui.PlanetStats(WIN, 5, 8+i*158, body.radius, body.color, stats, body.name, body.x, font2, font3, font4, font5, i)
         for i,body in enumerate(self.bodies[5:]):
-            gui.PlanetStats(WIN, 1005, 8+i*158, body.radius, body.color, stats, body.name, body.x, font2, font3)
+            gui.PlanetStats(WIN, 1005, 8+i*158, body.radius, body.color, stats, body.name, body.x, font2, font3, font4, font5, i+5)
 
         while run:
             clock.tick(60) 
@@ -85,7 +87,7 @@ class PlanetSimulation():
                 button.process()
 
             for stat in stats:
-                stat.process(self.bodies)
+                stat.process()
             
             pygame.display.update()
 

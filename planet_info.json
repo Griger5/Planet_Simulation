@@ -1,0 +1,76 @@
+{
+    "details": [
+        {
+            "name":"Mercury",
+            "diameter":"4 879 km",
+            "mass":"3,30104 x 10^23 kg",
+            "dayLength":"176 Earth days",
+            "yearLength":"88 Earth days",
+            "trivia":{"1":"Mercury has the most", "2":"craters in the Solar System.", "3":"The biggest one could fit all","4":"of western Europe."}
+        },
+        {
+            "name":"Venus",
+            "diameter":"12 104 km",
+            "mass":"4,86732 x 10^24 kg",
+            "dayLength":"243 Earth days",
+            "yearLength":"225 Earth days",
+            "trivia":{"1":"Venus spins clockwise on its", "2":"axis, all other planets", "3":"spin counterclockwise."}
+        },
+        {
+            "name":"Earth",
+            "diameter":"12 742 km",
+            "mass":"5,97219 x 10^24 kg",
+            "dayLength":"1 Earth day",
+            "yearLength":"1 Earth year",
+            "trivia":{"1":"The author of this code was","2":"born here."}
+        },
+        {
+            "name":"Mars",
+            "diameter":"6 779 km",
+            "mass":"6,41693 x 10^23 kg",
+            "dayLength":"~1 Earth day",
+            "yearLength":"687 Earth days",
+            "trivia":{"1":"Mars' two moons are called", "2":"Phobos and Deimos."}
+        },
+        {
+            "name":"Jupiter",
+            "diameter":"139 820 km",
+            "mass":"1,899 x 10^27 kg",
+            "dayLength":"10,5 hours",
+            "yearLength":"11,862 Earth years",
+            "trivia":{"1":"Jupiter's 'Great Red Spot'", "2":"is the largest storm in", "3":"the entire Solar System."}
+        },
+        {
+            "name":"Saturn",
+            "diameter":"116 460 km",
+            "mass":"5,68319 x 10^26 kg",
+            "dayLength":"10,7 hours",
+            "yearLength":"29.5 Earth years",
+            "trivia":{"1":"Its rings extend from 7 000", "2":"km to 80 000 km away from", "3":"Saturn's equator."}
+        },
+        {
+            "name":"Uranus",
+            "diameter":"50 724 km",
+            "mass":"8.68103 x 10^25 kg",
+            "dayLength":"17,25 hours",
+            "yearLength":"84 Earth years",
+            "trivia":{"1":"Relative to other planets,", "2":"Uranus rotates on its side."}
+        },
+        {
+            "name":"Neptune",
+            "diameter":"49 244 km",
+            "mass":"1.0241 x 10^26 kg",
+            "dayLength":"16 hours",
+            "yearLength":"165 Earth years",
+            "trivia":{"1":"Neptune was the first planet", "2":"located using mathematical", "3":"calculations."}
+        },
+        {
+            "name":"Sun",
+            "diameter":"1 392 700 km",
+            "mass":"1.989 x 10^30 kg",
+            "dayLength":"24.5 Earth days",
+            "yearLength":"230 million Earth years",
+            "trivia":{"1":"Sun will turn into a red giant", "2":"in approximately 4.5 billion", "3":"years."}
+        }
+    ]
+}
