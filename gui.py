@@ -1,5 +1,6 @@
 import pygame
 import json
+from pathlib import Path
 
 class Button():
     def __init__(self, window, x, y, width, height, colors, list, font, text="", command=None, multiclick=False):
@@ -78,7 +79,8 @@ class PlanetStats():
             "pressed":(90,90,90),
         }
         
-        with open("planet_info.json") as file:
+        root_dir = Path(__file__).resolve().parent
+        with open(str(root_dir)+"\planet_info.json") as file:
             self.information = json.load(file)["details"][self.index]
 
         self.statSurface = pygame.Surface((self.width, self.height))
@@ -95,7 +97,6 @@ class PlanetStats():
         width = 200
         height = 400
         infoSurface = pygame.Surface((width, height))
-        #infoSurface.fill((35,35,35))
         infoSurface.set_alpha(220)
         pygame.draw.rect(infoSurface, (35,35,35), (0, 0, width, height), 0, 10)
         stat = self.list[self.index]
@@ -122,25 +123,22 @@ class PlanetStats():
         yearlength = self.info_font.render(self.information["yearLength"], True, (180, 180, 180))
         type_trivia = self.info_font2.render("Trivia:", True, (180, 180, 180))
 
-        # everything was eyeballed, sorry
-        infoSurface.blit(type_name, [width/2 - type_name.get_rect().width/2, height/20 - type_name.get_rect().height/2])
-        infoSurface.blit(name, [width/2 - name.get_rect().width/2, height/10 - name.get_rect().height/2.5])
-        infoSurface.blit(type_diameter, [width/2 - type_diameter.get_rect().width/2, height/6 - type_diameter.get_rect().height/2])
-        infoSurface.blit(diameter, [width/2 - diameter.get_rect().width/2, height/5 - diameter.get_rect().height/6])
-        infoSurface.blit(type_mass, [width/2 - type_mass.get_rect().width/2, height/3.5 - type_mass.get_rect().height/2])
-        infoSurface.blit(mass, [width/2 - mass.get_rect().width/2, height/3 - mass.get_rect().height/3])
-        infoSurface.blit(type_daylength, [width/2 - type_daylength.get_rect().width/2, height/2.5 - type_daylength.get_rect().height/2])
-        infoSurface.blit(daylength, [width/2 - daylength.get_rect().width/2, height/2.2 - daylength.get_rect().height/2.5])
-        infoSurface.blit(type_yearlength, [width/2 - type_yearlength.get_rect().width/2, height/1.9 - type_yearlength.get_rect().height/2])
-        infoSurface.blit(yearlength, [width/2 - yearlength.get_rect().width/2, height/1.7 -  yearlength.get_rect().height/2.5])
-        infoSurface.blit(type_trivia, [width/2 - type_trivia.get_rect().width/2, height/1.5 - type_trivia.get_rect().height/2])
+        infoSurface.blit(type_name, [width/2 - type_name.get_rect().width/2, 10])
+        infoSurface.blit(name, [width/2 - name.get_rect().width/2, 35])
+        infoSurface.blit(type_diameter, [width/2 - type_diameter.get_rect().width/2, 65])
+        infoSurface.blit(diameter, [width/2 - diameter.get_rect().width/2, 90])
+        infoSurface.blit(type_mass, [width/2 - type_mass.get_rect().width/2, 120])
+        infoSurface.blit(mass, [width/2 - mass.get_rect().width/2, 145])
+        infoSurface.blit(type_daylength, [width/2 - type_daylength.get_rect().width/2, 175])
+        infoSurface.blit(daylength, [width/2 - daylength.get_rect().width/2, 200])
+        infoSurface.blit(type_yearlength, [width/2 - type_yearlength.get_rect().width/2, 230])
+        infoSurface.blit(yearlength, [width/2 - yearlength.get_rect().width/2, 255])
+        infoSurface.blit(type_trivia, [width/2 - type_trivia.get_rect().width/2, 285])
 
         # pygame doesn't support multiline texts, I used the most primitive idea to solve it, I may re-do it someday in a smarter way
-        multiplier = 0.1
         for i,item in enumerate(self.information["trivia"]):
             trivia = self.distance_font.render(self.information["trivia"][item], True, (180, 180, 180))
-            infoSurface.blit(trivia, [10, height/(1.4-multiplier*i) -  trivia.get_rect().height/2.5])
-            multiplier -= 0.006
+            infoSurface.blit(trivia, [10, 310+20*i])
 
         self.window.blit(infoSurface, infoRect)
     
